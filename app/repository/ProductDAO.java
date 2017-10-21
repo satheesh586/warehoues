@@ -4,13 +4,15 @@ import models.Product;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by satheesh on 19/10/17.
  */
 public class ProductDAO {
-    public static List<Product> findAll() {
-        return new ArrayList<Product>(Product.products);
+
+    public static Set<Product> listAll() {
+        return Product.products;
     }
 
     public static Product findByEan(String ean) {
@@ -22,10 +24,10 @@ public class ProductDAO {
         return null;
     }
 
-    public static List<Product> findByName(String term) {
-        final List<Product> results = new ArrayList<Product>();
+    public static List<Product> findByName(String name) {
+        List<Product> results = new ArrayList<Product>();
         for (Product candidate : Product.products) {
-            if (candidate.name.toLowerCase().contains(term.toLowerCase())) {
+            if (candidate.name.toLowerCase().contains(name.toLowerCase())) {
                 results.add(candidate);
             }
         }
